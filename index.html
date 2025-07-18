@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pongverse - AI Sports Training & GameFi Platform</title>
+    <meta name="description" content="Pongverse是全球首创将AI体育训练与区块链GameFi经济相结合的创新平台">
+    <link rel="stylesheet" href="./App.css">
+    <style>
+        /* Additional styles for static version */
+        .section { padding: 100px 0; }
+        .hidden { display: none; }
+        .active-section { display: block; }
+        
+        /* Navigation active states */
+        .nav-item.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo">
+                    <span class="logo-text-zh">乒次元</span>
+                    <span class="logo-text-en">PONGVERSE</span>
+                </div>
+            </div>
+            
+            <nav class="nav-menu">
+                <button class="nav-item active" onclick="showSection('home')">
+                    <span data-zh="首页" data-en="Home">首页</span>
+                </button>
+                <button class="nav-item" onclick="showSection('ico')">
+                    <span data-zh="ICO" data-en="ICO">ICO</span>
+                </button>
+                <button class="nav-item" onclick="showSection('mvp')">
+                    <span data-zh="MVP测试" data-en="MVP Demo">MVP测试</span>
+                </button>
+                <a href="./whitepaper_zh.pdf" class="nav-item" target="_blank" data-zh-href="./whitepaper_zh.pdf" data-en-href="./whitepaper_en.pdf">
+                    <span data-zh="白皮书" data-en="Whitepaper">白皮书</span>
+                </a>
+                <a href="https://t.me/han_bot" class="nav-item" target="_blank">
+                    <span data-zh="社区" data-en="Community">社区</span>
+                </a>
+            </nav>
+            
+            <div class="nav-actions">
+                <button class="lang-toggle" onclick="toggleLanguage()">
+                    <span id="langToggleText">EN</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <div id="home" class="section active-section">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-background">
+                <div class="hero-particles"></div>
+            </div>
+            
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="hero-title">
+                            <span data-zh="重新定义体育训练" data-en="Redefining Sports Training">重新定义体育训练</span>
+                            <span class="hero-subtitle" data-zh="AI驱动，Web3赋能" data-en="AI-Driven, Web3-Powered">AI驱动，Web3赋能</span>
+                        </h1>
+                        
+                        <p class="hero-description" data-zh="Pongverse 是全球首创将 AI 体育训练与区块链 GameFi 经济相结合的创新平台。通过我们的 App，用户可进行乒乓球等运动的动作识别训练，完成后获得代币奖励，开启"边练习边赚钱"的全新体验。" data-en="Pongverse is the world's first innovative platform combining AI sports training with blockchain GameFi economics. Through our App, users can perform motion recognition training for table tennis and other sports, earning token rewards upon completion, unlocking a new 'Move-to-Earn' experience.">
+                            Pongverse 是全球首创将 AI 体育训练与区块链 GameFi 经济相结合的创新平台。通过我们的 App，用户可进行乒乓球等运动的动作识别训练，完成后获得代币奖励，开启"边练习边赚钱"的全新体验。
+                        </p>
+                        
+                        <div class="hero-actions">
+                            <button class="btn btn-primary" onclick="showSection('mvp')">
+                                <span data-zh="立即体验MVP" data-en="Try MVP Now">立即体验MVP</span>
+                            </button>
+                            <button class="btn btn-secondary" onclick="showSection('ico')">
+                                <span data-zh="参与ICO" data-en="Join ICO">参与ICO</span>
+                            </button>
+                        </div>
+                        
+                        <div class="hero-stats">
+                            <div class="stat-item">
+                                <div class="stat-number">10,000+</div>
+                                <div class="stat-label" data-zh="预注册用户" data-en="Pre-registered Users">预注册用户</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">95%</div>
+                                <div class="stat-label" data-zh="AI识别精度" data-en="AI Recognition Accuracy">AI识别精度</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number">1M+</div>
+                                <div class="stat-label" data-zh="PONG代币奖励池" data-en="PONG Token Reward Pool">PONG代币奖励池</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-visual">
+                        <div class="phone-mockup">
+                            <div class="phone-screen">
+                                <div class="app-interface">
+                                    <div class="training-view">
+                                        <div class="camera-feed"></div>
+                                        <div class="ai-overlay">
+                                            <div class="pose-points"></div>
+                                            <div class="score-display">95%</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-zh="核心功能特色" data-en="Core Features">核心功能特色</h2>
+                    <p class="section-subtitle" data-zh="革命性的AI体育训练与GameFi结合" data-en="Revolutionary AI Sports Training meets GameFi">革命性的AI体育训练与GameFi结合</p>
+                </div>
+                
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🤖</div>
+                        <h3 class="feature-title" data-zh="AI实时动作识别" data-en="AI Real-time Motion Recognition">AI实时动作识别</h3>
+                        <p class="feature-description" data-zh="先进的计算机视觉技术，实时捕捉和分析用户的训练动作，提供专业级的技术指导和即时反馈。" data-en="Advanced computer vision technology that captures and analyzes user training movements in real-time, providing professional-grade technical guidance and instant feedback.">先进的计算机视觉技术，实时捕捉和分析用户的训练动作，提供专业级的技术指导和即时反馈。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💰</div>
+                        <h3 class="feature-title" data-zh="Move-to-Earn机制" data-en="Move-to-Earn Mechanism">Move-to-Earn机制</h3>
+                        <p class="feature-description" data-zh="完成训练任务即可获得PONG代币奖励，将健身锻炼转化为实际收益，激励用户持续参与。" data-en="Earn PONG token rewards by completing training tasks, converting fitness workouts into actual earnings and incentivizing continuous user participation.">完成训练任务即可获得PONG代币奖励，将健身锻炼转化为实际收益，激励用户持续参与。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🎯</div>
+                        <h3 class="feature-title" data-zh="个性化训练计划" data-en="Personalized Training Plans">个性化训练计划</h3>
+                        <p class="feature-description" data-zh="基于AI分析的个人技能水平，为每位用户定制专属的训练课程和进阶路径。" data-en="AI-analyzed personal skill levels create customized training courses and progression paths for each user.">基于AI分析的个人技能水平，为每位用户定制专属的训练课程和进阶路径。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🏆</div>
+                        <h3 class="feature-title" data-zh="社区竞技系统" data-en="Community Competition System">社区竞技系统</h3>
+                        <p class="feature-description" data-zh="参与全球排行榜竞争，与好友PK，赢取丰厚奖励，享受竞技乐趣。" data-en="Participate in global leaderboard competitions, compete with friends, win generous rewards, and enjoy competitive fun.">参与全球排行榜竞争，与好友PK，赢取丰厚奖励，享受竞技乐趣。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔒</div>
+                        <h3 class="feature-title" data-zh="区块链安全保障" data-en="Blockchain Security">区块链安全保障</h3>
+                        <p class="feature-description" data-zh="基于BNB智能链的去中心化架构，确保用户资产安全和交易透明。" data-en="Decentralized architecture based on BNB Smart Chain ensures user asset security and transaction transparency.">基于BNB智能链的去中心化架构，确保用户资产安全和交易透明。</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3 class="feature-title" data-zh="全球生态系统" data-en="Global Ecosystem">全球生态系统</h3>
+                        <p class="feature-description" data-zh="连接全球体育爱好者，构建庞大的运动社区和经济生态。" data-en="Connecting global sports enthusiasts to build a massive sports community and economic ecosystem.">连接全球体育爱好者，构建庞大的运动社区和经济生态。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- ICO Section -->
+    <div id="ico" class="section hidden">
+        <section class="ico-section full-page">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" style="color: white;" data-zh="PONG代币ICO" data-en="PONG Token ICO">PONG代币ICO</h2>
+                    <p class="section-subtitle" style="color: rgba(255,255,255,0.9);" data-zh="参与Pongverse生态建设，共享平台发展红利" data-en="Join Pongverse ecosystem development and share platform growth dividends">参与Pongverse生态建设，共享平台发展红利</p>
+                </div>
+                
+                <div class="ico-content">
+                    <div class="ico-main">
+                        <div class="ico-card">
+                            <div class="ico-header">
+                                <div class="phase-indicator">
+                                    <span class="phase-label" data-zh="当前阶段" data-en="Current Phase">当前阶段</span>
+                                    <span class="phase-name" data-zh="早鸟轮" data-en="Early Bird">早鸟轮</span>
+                                </div>
+                                <div class="phase-status active"></div>
+                            </div>
+                            
+                            <div class="price-info">
+                                <div class="current-price">
+                                    <span class="price-label" data-zh="当前价格" data-en="Current Price">当前价格</span>
+                                    <span class="price-value">600 PONG/BNB</span>
+                                </div>
+                                <div class="next-price">
+                                    <span class="price-label" data-zh="下轮价格" data-en="Next Price">下轮价格</span>
+                                    <span class="price-value">500 PONG/BNB</span>
+                                </div>
+                            </div>
+                            
+                            <div class="countdown">
+                                <div class="countdown-label" data-zh="剩余时间" data-en="Time Left">剩余时间</div>
+                                <div class="countdown-timer">
+                                    <div class="time-unit">
+                                        <span class="time-value" id="days">30</span>
+                                        <span class="time-label">Days</span>
+                                    </div>
+                                    <div class="time-unit">
+                                        <span class="time-value" id="hours">12</span>
+                                        <span class="time-label">Hours</span>
+                                    </div>
+                                    <div class="time-unit">
+                                        <span class="time-value" id="minutes">45</span>
+                                        <span class="time-label">Min</span>
+                                    </div>
+                                    <div class="time-unit">
+                                        <span class="time-value" id="seconds">30</span>
+                                        <span class="time-label">Sec</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="progress-section">
+                                <div class="progress-info">
+                                    <span data-zh="已筹集: 125.7 BNB" data-en="Raised: 125.7 BNB">已筹集: 125.7 BNB</span>
+                                    <span data-zh="目标: 500 BNB" data-en="Target: 500 BNB">目标: 500 BNB</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                </div>
+                                <div class="progress-percentage">25%</div>
+                            </div>
+                            
+                            <div class="ico-actions">
+                                <button class="btn btn-primary btn-large">
+                                    <span data-zh="立即购买" data-en="Buy Now">立即购买</span>
+                                </button>
+                                <button class="btn btn-outline">
+                                    <span data-zh="连接钱包" data-en="Connect Wallet">连接钱包</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="ico-sidebar">
+                        <div class="tokenomics-card">
+                            <h3 data-zh="代币分配" data-en="Token Distribution">代币分配</h3>
+                            <div class="tokenomics-chart">
+                                <div class="chart-item">
+                                    <div class="chart-color ico"></div>
+                                    <span data-zh="ICO销售 50%" data-en="ICO Sales 50%">ICO销售 50%</span>
+                                </div>
+                                <div class="chart-item">
+                                    <div class="chart-color rewards"></div>
+                                    <span data-zh="奖励池 30%" data-en="Reward Pool 30%">奖励池 30%</span>
+                                </div>
+                                <div class="chart-item">
+                                    <div class="chart-color team"></div>
+                                    <span data-zh="团队 10%" data-en="Team 10%">团队 10%</span>
+                                </div>
+                                <div class="chart-item">
+                                    <div class="chart-color marketing"></div>
+                                    <span data-zh="市场推广 10%" data-en="Marketing 10%">市场推广 10%</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="features-card">
+                            <ul class="features-list">
+                                <li data-zh="✅ 自动LP注资机制" data-en="✅ Auto LP Injection Mechanism">✅ 自动LP注资机制</li>
+                                <li data-zh="✅ LP锁仓半年保障" data-en="✅ 6-Month LP Lock Guarantee">✅ LP锁仓半年保障</li>
+                                <li data-zh="✅ 透明链上合约" data-en="✅ Transparent On-chain Contract">✅ 透明链上合约</li>
+                                <li data-zh="✅ 社区治理权益" data-en="✅ Community Governance Rights">✅ 社区治理权益</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- MVP Demo Section -->
+    <div id="mvp" class="section hidden">
+        <section class="mvp-demo">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-zh="MVP 实时演示" data-en="MVP Live Demo">MVP 实时演示</h2>
+                    <p class="section-subtitle" data-zh="体验AI驱动的乒乓球训练系统" data-en="Experience AI-Powered Table Tennis Training System">体验AI驱动的乒乓球训练系统</p>
+                </div>
+                
+                <div class="demo-content">
+                    <div class="demo-main">
+                        <div class="video-container">
+                            <div class="video-section">
+                                <h3 data-zh="示范视频" data-en="Demo Video">示范视频</h3>
+                                <div class="demo-video">
+                                    <div class="video-placeholder">
+                                        <div class="play-button">▶</div>
+                                        <span>乒乓球正手攻球示范</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="video-section">
+                                <h3 data-zh="实时动作" data-en="Real-time Action">实时动作</h3>
+                                <div class="camera-feed" id="cameraFeed">
+                                    <div class="camera-placeholder">
+                                        <div class="camera-icon">📹</div>
+                                        <span data-zh="点击开始训练启用摄像头" data-en="Click Start Training to enable camera">点击开始训练启用摄像头</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="controls-panel">
+                            <div class="control-group">
+                                <label data-zh="训练等级" data-en="Training Level">训练等级</label>
+                                <div class="level-selector">
+                                    <button class="level-btn active">Level 1</button>
+                                    <button class="level-btn locked">Level 2 <span class="lock-icon">🔒</span></button>
+                                    <button class="level-btn locked">Level 3 <span class="lock-icon">🔒</span></button>
+                                </div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label data-zh="AI检测灵敏度: 75%" data-en="AI Detection Sensitivity: 75%">AI检测灵敏度: 75%</label>
+                                <input type="range" min="0" max="100" value="75" class="slider" id="sensitivitySlider">
+                            </div>
+                            
+                            <div class="training-actions">
+                                <button class="btn btn-primary btn-large" id="trainingBtn" onclick="toggleTraining()">
+                                    <span data-zh="开始训练" data-en="Start Training">开始训练</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="demo-sidebar">
+                        <div class="stats-panel">
+                            <div class="stat-item">
+                                <div class="stat-label" data-zh="模仿率" data-en="Mimicry Rate">模仿率</div>
+                                <div class="stat-value" id="mimicryRate" style="color: #EF4444;">0%</div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" id="mimicryBar" style="width: 0%; background-color: #EF4444;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <div class="stat-label" data-zh="动作得分" data-en="Action Score">动作得分</div>
+                                <div class="stat-value" id="actionScore">0</div>
+                                <div class="stat-bar">
+                                    <div class="stat-fill" id="actionBar" style="width: 0%;"></div>
+                                </div>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <div class="stat-label" data-zh="最高频率" data-en="Max Frequency">最高频率</div>
+                                <div class="stat-value" id="maxFrequency">0 Hz</div>
+                            </div>
+                            
+                            <div class="stat-item">
+                                <div class="stat-label" data-zh="平均频率" data-en="Avg Frequency">平均频率</div>
+                                <div class="stat-value" id="avgFrequency">0 Hz</div>
+                            </div>
+                            
+                            <div class="stat-item highlight">
+                                <div class="stat-label" data-zh="获得代币" data-en="Earned Tokens">获得代币</div>
+                                <div class="stat-value" id="earnedTokens">0 PONG</div>
+                            </div>
+                        </div>
+                        
+                        <div class="instructions-panel">
+                            <h4 data-zh="使用说明" data-en="Instructions">使用说明</h4>
+                            <ul>
+                                <li data-zh="1. 选择训练等级（Level 1免费，Level 2+需要代币解锁）" data-en="1. Select training level (Level 1 free, Level 2+ requires tokens)">1. 选择训练等级（Level 1免费，Level 2+需要代币解锁）</li>
+                                <li data-zh="2. 调整AI检测灵敏度以适应您的环境" data-en="2. Adjust AI detection sensitivity for your environment">2. 调整AI检测灵敏度以适应您的环境</li>
+                                <li data-zh="3. 点击"开始训练"并跟随示范视频进行动作" data-en="3. Click 'Start Training' and follow the demo video">3. 点击"开始训练"并跟随示范视频进行动作</li>
+                                <li data-zh="4. AI将实时分析您的动作并给出评分" data-en="4. AI will analyze your movements in real-time and score">4. AI将实时分析您的动作并给出评分</li>
+                                <li data-zh="5. 完成训练后获得PONG代币奖励" data-en="5. Earn PONG token rewards upon training completion">5. 完成训练后获得PONG代币奖励</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="demo-actions">
+                            <a href="https://oeafiert.manus.space/" target="_blank" class="btn btn-outline">
+                                <span data-zh="立即体验" data-en="Try Now">立即体验</span>
+                            </a>
+                            <button class="btn btn-primary">
+                                <span data-zh="下载完整App" data-en="Download Full App">下载完整App</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <div class="footer-logo">
+                            <span class="logo-text-zh">乒次元</span>
+                            <span class="logo-text-en">PONGVERSE</span>
+                        </div>
+                        <p class="footer-description" data-zh="Pongverse 是全球首创将 AI 体育训练与区块链 GameFi 经济相结合的创新平台。" data-en="Pongverse is the world's first innovative platform combining AI sports training with blockchain GameFi economics.">Pongverse 是全球首创将 AI 体育训练与区块链 GameFi 经济相结合的创新平台。</p>
+                        
+                        <div class="footer-contact">
+                            <h4 data-zh="联系我们" data-en="Contact Us">联系我们</h4>
+                            <div class="contact-item">
+                                <span class="contact-label">Email:</span>
+                                <a href="mailto:contact@pongverse.online" class="contact-link">contact@pongverse.online</a>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Address:</span>
+                                <span>AI Beyond Sports Sdn Bhd, Malaysia</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-column">
+                            <h4 data-zh="快速链接" data-en="Quick Links">快速链接</h4>
+                            <ul>
+                                <li><a href="#" onclick="showSection('home')" data-zh="首页" data-en="Home">首页</a></li>
+                                <li><a href="#" onclick="showSection('ico')" data-zh="ICO" data-en="ICO">ICO</a></li>
+                                <li><a href="#" onclick="showSection('mvp')" data-zh="MVP演示" data-en="MVP Demo">MVP演示</a></li>
+                                <li><a href="./whitepaper_zh.pdf" data-zh="白皮书" data-en="Whitepaper">白皮书</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4 data-zh="社区" data-en="Community">社区</h4>
+                            <ul>
+                                <li><a href="https://t.me/han_bot" target="_blank">Telegram</a></li>
+                                <li><a href="#">Twitter</a></li>
+                                <li><a href="#">Discord</a></li>
+                                <li><a href="#">Medium</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4 data-zh="资源" data-en="Resources">资源</h4>
+                            <ul>
+                                <li><a href="#" data-zh="技术文档" data-en="Technical Docs">技术文档</a></li>
+                                <li><a href="#" data-zh="API文档" data-en="API Docs">API文档</a></li>
+                                <li><a href="#" data-zh="开发者指南" data-en="Developer Guide">开发者指南</a></li>
+                                <li><a href="#" data-zh="常见问题" data-en="FAQ">常见问题</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-column">
+                            <h4 data-zh="法律" data-en="Legal">法律</h4>
+                            <ul>
+                                <li><a href="#" data-zh="隐私政策" data-en="Privacy Policy">隐私政策</a></li>
+                                <li><a href="#" data-zh="服务条款" data-en="Terms of Service">服务条款</a></li>
+                                <li><a href="#" data-zh="免责声明" data-en="Disclaimer">免责声明</a></li>
+                                <li><a href="#" data-zh="风险提示" data-en="Risk Warning">风险提示</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="footer-copyright">
+                        <p data-zh="© 2024 Pongverse. 保留所有权利。" data-en="© 2024 Pongverse. All rights reserved.">© 2024 Pongverse. 保留所有权利。</p>
+                    </div>
+                    <div class="footer-disclaimer">
+                        <p data-zh="风险提示：加密货币投资存在风险，请谨慎投资。" data-en="Risk Warning: Cryptocurrency investment involves risks, please invest cautiously.">风险提示：加密货币投资存在风险，请谨慎投资。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let currentLanguage = 'zh';
+        let isTraining = false;
+        let trainingInterval;
+        let countdownInterval;
+        
+        // Language toggle
+        function toggleLanguage() {
+            currentLanguage = currentLanguage === 'zh' ? 'en' : 'zh';
+            updateLanguage();
+        }
+        
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-zh][data-en]');
+            elements.forEach(element => {
+                const text = element.getAttribute(`data-${currentLanguage}`);
+                if (text) {
+                    element.textContent = text;
+                }
+            });
+            
+            document.getElementById('langToggleText').textContent = currentLanguage === 'zh' ? 'EN' : '中文';
+            document.documentElement.lang = currentLanguage === 'zh' ? 'zh-CN' : 'en';
+
+            // Update whitepaper link
+            const whitepaperLink = document.querySelector('.nav-menu a[data-zh-href]');
+            if (whitepaperLink) {
+                whitepaperLink.href = whitepaperLink.getAttribute(`data-${currentLanguage}-href`);
+            }
+        }
+        
+        // Section navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.add('hidden');
+                section.classList.remove('active-section');
+            });
+            
+            // Show target section
+            const targetSection = document.getElementById(sectionId);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                targetSection.classList.add('active-section');
+            }
+            
+            // Update navigation
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            const activeNavItem = document.querySelector(`[onclick="showSection('${sectionId}')"]`);
+            if (activeNavItem) {
+                activeNavItem.classList.add('active');
+            }
+        }
+        
+        // Training simulation
+        function toggleTraining() {
+            const btn = document.getElementById('trainingBtn');
+            const cameraFeed = document.getElementById('cameraFeed');
+            
+            if (!isTraining) {
+                startTraining();
+                btn.innerHTML = `<span data-zh="停止训练" data-en="Stop Training">${currentLanguage === 'zh' ? '停止训练' : 'Stop Training'}</span>`;
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-danger');
+                
+                // Add AI overlay to camera feed
+                cameraFeed.innerHTML = `
+                    <div class="ai-overlay">
+                        <div class="pose-points">
+                            <div class="point point-1"></div>
+                            <div class="point point-2"></div>
+                            <div class="point point-3"></div>
+                            <div class="point point-4"></div>
+                        </div>
+                    </div>
+                `;
+            } else {
+                stopTraining();
+                btn.innerHTML = `<span data-zh="开始训练" data-en="Start Training">${currentLanguage === 'zh' ? '开始训练' : 'Start Training'}</span>`;
+                btn.classList.remove('btn-danger');
+                btn.classList.add('btn-primary');
+                
+                // Reset camera feed
+                cameraFeed.innerHTML = `
+                    <div class="camera-placeholder">
+                        <div class="camera-icon">📹</div>
+                        <span data-zh="点击开始训练启用摄像头" data-en="Click Start Training to enable camera">${currentLanguage === 'zh' ? '点击开始训练启用摄像头' : 'Click Start Training to enable camera'}</span>
+                    </div>
+                `;
+            }
+        }
+        
+        function startTraining() {
+            isTraining = true;
+            
+            // Reset stats
+            updateStat('mimicryRate', 0);
+            updateStat('actionScore', 0);
+            updateStat('maxFrequency', 0);
+            updateStat('avgFrequency', 0);
+            
+            // Start simulation
+            trainingInterval = setInterval(() => {
+                const mimicry = Math.min(100, parseInt(document.getElementById('mimicryRate').textContent) + Math.random() * 5);
+                const action = Math.min(100, parseInt(document.getElementById('actionScore').textContent) + Math.random() * 3);
+                const maxFreq = Math.min(120, parseInt(document.getElementById('maxFrequency').textContent) + Math.random() * 2);
+                const avgFreq = Math.min(80, parseInt(document.getElementById('avgFrequency').textContent) + Math.random() * 1.5);
+                
+                updateStat('mimicryRate', Math.round(mimicry));
+                updateStat('actionScore', Math.round(action));
+                updateStat('maxFrequency', Math.round(maxFreq));
+                updateStat('avgFrequency', Math.round(avgFreq));
+            }, 500);
+        }
+        
+        function stopTraining() {
+            isTraining = false;
+            clearInterval(trainingInterval);
+            
+            // Calculate earned tokens
+            const mimicry = parseInt(document.getElementById('mimicryRate').textContent);
+            const action = parseInt(document.getElementById('actionScore').textContent);
+            const earned = Math.floor((mimicry + action) / 10);
+            
+            const currentTokens = parseInt(document.getElementById('earnedTokens').textContent);
+            updateStat('earnedTokens', currentTokens + earned);
+        }
+        
+        function updateStat(statId, value) {
+            const element = document.getElementById(statId);
+            const bar = document.getElementById(statId.replace('Rate', 'Bar').replace('Score', 'Bar'));
+            
+            if (statId === 'mimicryRate') {
+                element.textContent = value + '%';
+                if (bar) {
+                    bar.style.width = value + '%';
+                    // Update color based on value
+                    if (value >= 71) {
+                        element.style.color = '#10B981';
+                        bar.style.backgroundColor = '#10B981';
+                    } else if (value >= 41) {
+                        element.style.color = '#3B82F6';
+                        bar.style.backgroundColor = '#3B82F6';
+                    } else {
+                        element.style.color = '#EF4444';
+                        bar.style.backgroundColor = '#EF4444';
+                    }
+                }
+            } else if (statId === 'actionScore') {
+                element.textContent = value;
+                if (bar) {
+                    bar.style.width = value + '%';
+                }
+            } else if (statId === 'maxFrequency' || statId === 'avgFrequency') {
+                element.textContent = value + ' Hz';
+            } else if (statId === 'earnedTokens') {
+                element.textContent = value + ' PONG';
+            }
+        }
+        
+        // Countdown timer
+        function startCountdown() {
+            let days = 30, hours = 12, minutes = 45, seconds = 30;
+            
+            countdownInterval = setInterval(() => {
+                if (seconds > 0) {
+                    seconds--;
+                } else if (minutes > 0) {
+                    minutes--;
+                    seconds = 59;
+                } else if (hours > 0) {
+                    hours--;
+                    minutes = 59;
+                    seconds = 59;
+                } else if (days > 0) {
+                    days--;
+                    hours = 23;
+                    minutes = 59;
+                    seconds = 59;
+                }
+                
+                document.getElementById('days').textContent = days;
+                document.getElementById('hours').textContent = hours;
+                document.getElementById('minutes').textContent = minutes;
+                document.getElementById('seconds').textContent = seconds;
+            }, 1000);
+        }
+        
+        // Sensitivity slider
+        document.getElementById('sensitivitySlider').addEventListener('input', function(e) {
+            const value = e.target.value;
+            const label = e.target.previousElementSibling;
+            label.setAttribute('data-zh', `AI检测灵敏度: ${value}%`);
+            label.setAttribute('data-en', `AI Detection Sensitivity: ${value}%`);
+            updateLanguage();
+        });
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateLanguage();
+            startCountdown();
+        });
+    </script>
+</body>
+</html>
+
